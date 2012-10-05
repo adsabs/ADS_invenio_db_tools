@@ -13,7 +13,7 @@ for table, in run_sql("SHOW TABLES LIKE 'bib__x'"):
             `id` int(10) unsigned NOT NULL AUTO_INCREMENT,\
             `tag` varchar(6) NOT NULL DEFAULT '',\
             `value` mediumtext NOT NULL,\
-            `value_hash` varchar(68) NOT NULL,\
+            `value_hash` varchar(100) NOT NULL,\
             PRIMARY KEY (`id`),\
             UNIQUE KEY `ktv` (`tag`,`value_hash`),\
             KEY `kt` (`tag`),\
