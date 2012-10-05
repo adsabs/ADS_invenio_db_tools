@@ -2,6 +2,7 @@ from invenio.dbquery import run_sql
 
 for table, in run_sql("SHOW TABLES LIKE 'bib__x'"):
     run_sql('ALTER TABLE %s MODIFY COLUMN `id` int(10) unsigned NOT NULL auto_increment' % table)
+    run_sql('ALTER TABLE %s MODIFY COLUMN `value` mediumtext NOT NULL' % table)
     run_sql('ALTER TABLE %s DROP KEY `kv`' % table)
     if table in ('bib85x', 'bib99x', 'bib50x'):
         run_sql('ALTER TABLE %s ADD KEY `kv` (value(250))' % table)
@@ -17,7 +18,7 @@ for table, in run_sql("SHOW TABLES LIKE 'bibrec_bib__x'"):
     print 'Done %s.' % table
 
 
-run_sql('ALTER TABLE bibfmt MODIFY COLUMN `id` int(10) unsigned NOT NULL auto_increment')
+#run_sql('ALTER TABLE bibfmt MODIFY COLUMN `id` int(10) unsigned NOT NULL auto_increment')
 run_sql("ALTER TABLE bibfmt MODIFY COLUMN `id_bibrec` int(10) unsigned NOT NULL default '0'")
 
 print 'Done bibfmt.'
@@ -28,3 +29,4 @@ run_sql('ALTER TABLE bibrec MODIFY COLUMN `id` int(10) unsigned NOT NULL auto_in
 run_sql('ALTER TABLE bibrec ADD KEY `id_modif` (modification_date, id)')
 
 print 'Done bibrec.'
+
