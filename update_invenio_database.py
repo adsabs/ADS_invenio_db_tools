@@ -30,3 +30,7 @@ run_sql('ALTER TABLE bibrec ADD KEY `id_modif` (modification_date, id)')
 
 print 'Done bibrec.'
 
+#this column is too small for some records
+run_sql('ALTER TABLE hstRECORD MODIFY COLUMN `marcxml` longblob NOT NULL')
+
+print 'Done hstRECORD.'
